@@ -165,7 +165,6 @@ def evaluate_nn(
         data_val = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
             wavefake_path=datasets_paths[1],
-            # fakeavceleb_path=datasets_paths[2],
             fold_num=fold,
             fold_subset="val",
             reduced_number=amount_to_use,
@@ -176,7 +175,7 @@ def evaluate_nn(
             data_val,
             batch_size=batch_size,
             drop_last=True,
-            num_workers=3,
+            num_workers=2,
         )
 
         num_correct = 0.0
@@ -258,11 +257,10 @@ def evaluate_gmm(
     LOGGER.info(f"paths: {real_model_path}, {fake_model_path}, {datasets_paths}")
 
     for subtype in ["val", "test", "train"]:
-        for fold in [0, 1, 2]:
+        for fold in [0, 1]:
             real_dataset_test = AttackAgnosticDataset(
                 asvspoof_path=datasets_paths[0],
                 wavefake_path=datasets_paths[1],
-                # fakeavceleb_path=datasets_paths[2],
                 fold_num=fold,
                 fold_subset=subtype,
                 oversample=False,
@@ -275,7 +273,6 @@ def evaluate_gmm(
             fake_dataset_test = AttackAgnosticDataset(
                 asvspoof_path=datasets_paths[0],
                 wavefake_path=datasets_paths[1],
-                # fakeavceleb_path=datasets_paths[2],
                 fold_num=fold,
                 fold_subset=subtype,
                 oversample=False,
@@ -387,7 +384,6 @@ def parse_args():
     # If assigned as None, then it won't be taken into account
     ASVSPOOF_DATASET_PATH = "../datasets/ASVspoof2021/LA"
     WAVEFAKE_DATASET_PATH = "../datasets/WaveFake"
-    # FAKEAVCELEB_DATASET_PATH = "../datasets/FakeAVCeleb/FakeAVCeleb_v1.2"
 
     parser.add_argument(
         "--asv_path", type=str, default=ASVSPOOF_DATASET_PATH
@@ -395,9 +391,7 @@ def parse_args():
     parser.add_argument(
         "--wavefake_path", type=str, default=WAVEFAKE_DATASET_PATH
     )
-    # parser.add_argument(
-    #     "--celeb_path", type=str, default=FAKEAVCELEB_DATASET_PATH
-    # )
+
 
     default_model_config = "config.yaml"
     parser.add_argument(
