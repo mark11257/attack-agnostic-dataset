@@ -76,7 +76,7 @@ def train_nn(
         data_train = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
             wavefake_path=datasets_paths[1],
-            fakeavceleb_path=datasets_paths[2],
+            # fakeavceleb_path=datasets_paths[2],
             fold_num=fold,
             fold_subset="train",
             reduced_number=amount_to_use,
@@ -86,7 +86,7 @@ def train_nn(
         data_test = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
             wavefake_path=datasets_paths[1],
-            fakeavceleb_path=datasets_paths[2],
+            # fakeavceleb_path=datasets_paths[2],
             fold_num=fold,
             fold_subset="test",
             reduced_number=amount_to_use,
@@ -143,7 +143,7 @@ def train_gmm(
         real_dataset_train = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
             wavefake_path=datasets_paths[1],
-            fakeavceleb_path=datasets_paths[2],
+            # fakeavceleb_path=datasets_paths[2],
             fold_num=fold,
             fold_subset="train",
             oversample=False,
@@ -156,7 +156,7 @@ def train_gmm(
         fake_dataset_train = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
             wavefake_path=datasets_paths[1],
-            fakeavceleb_path=datasets_paths[2],
+            # fakeavceleb_path=datasets_paths[2],
             fold_num=fold,
             fold_subset="train",
             oversample=False,
@@ -263,7 +263,7 @@ def parse_args():
 
     ASVSPOOF_DATASET_PATH = "../datasets/ASVspoof2021/LA"
     WAVEFAKE_DATASET_PATH = "../datasets/WaveFake"
-    FAKEAVCELEB_DATASET_PATH = "../datasets/FakeAVCeleb/FakeAVCeleb_v1.2"
+    # FAKEAVCELEB_DATASET_PATH = "../datasets/FakeAVCeleb/FakeAVCeleb_v1.2"
 
     parser.add_argument(
         "--asv_path", type=str, default=ASVSPOOF_DATASET_PATH, help="Path to ASVspoof2021 dataset directory",
@@ -271,9 +271,9 @@ def parse_args():
     parser.add_argument(
         "--wavefake_path", type=str, default=WAVEFAKE_DATASET_PATH, help="Path to WaveFake dataset directory",
     )
-    parser.add_argument(
-        "--celeb_path", type=str, default=FAKEAVCELEB_DATASET_PATH, help="Path to FakeAVCeleb dataset directory",
-    )
+    # parser.add_argument(
+    #     "--celeb_path", type=str, default=FAKEAVCELEB_DATASET_PATH, help="Path to FakeAVCeleb dataset directory",
+    # )
 
     default_model_config = "config.yaml"
     parser.add_argument(
