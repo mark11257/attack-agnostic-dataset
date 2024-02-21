@@ -34,7 +34,7 @@ class FakeAVCelebDataset(SimpleAudioFakeDataset):
 
     audio_folder = "FakeAVCeleb-audio"
     audio_extension = ".mp3"
-    metadata_file = Path(audio_folder) / "meta_data.csv"
+    metadata_file = "/kaggle/input/fakeavceleb/FakeAVCeleb_v1.2/meta_data.csv"
     subsets = ("train", "dev", "eval")
 
     def __init__(self, path, fold_num=0, fold_subset="train", transform=None):
