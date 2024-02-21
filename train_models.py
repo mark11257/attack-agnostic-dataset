@@ -234,7 +234,7 @@ def main(args):
             cnn_features_setting = CNNFeaturesSetting()
 
         train_nn(
-            datasets_paths=[args.asv_path, args.wavefake_path, args.celeb_path],
+            datasets_paths=[args.asv_path, args.wavefake_path],
             device=device,
             amount_to_use=args.amount,
             batch_size=args.batch_size,
@@ -246,7 +246,7 @@ def main(args):
     else:
         feature_fn = lfcc if args.lfcc else mfcc
         train_gmm(
-            datasets_paths=[args.asv_path, args.wavefake_path, args.celeb_path],
+            datasets_paths=[args.asv_path, args.wavefake_path],
             feature_fn=feature_fn,
             feature_kwargs=feature_kwargs(args.lfcc),
             clusters=args.clusters,
