@@ -3,6 +3,7 @@ import logging
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import Callable, List, Optional
+from tqdm.autonotebook import tqdm
 
 import numpy as np
 import torch
@@ -203,7 +204,7 @@ class GDTrainer(Trainer):
             num_total = 0.0
             model.train()
 
-            for i, (batch_x, _, batch_y) in enumerate(train_loader):
+            for i, (batch_x, _, batch_y) in enumerate(tqdm(train_loader)):
                 batch_size = batch_x.size(0)
                 num_total += batch_size
 
