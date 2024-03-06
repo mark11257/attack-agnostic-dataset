@@ -112,7 +112,7 @@ if __name__ == "__main__":
         print('real', len(dataset))
 
         dataset = WaveFakeDataset(WAVEFAKE_DATASET_PATH, fold_num=2, fold_subset=subset)
-        dataset.get_fake_samples()
+        dataset.get_generated_samples()
         fake += len(dataset)
 
         print('fake', len(dataset))
