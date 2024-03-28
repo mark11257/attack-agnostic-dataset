@@ -33,7 +33,7 @@ ASVSPOOF_KFOLD_SPLIT = {
 class ASVSpoofDataset(SimpleAudioFakeDataset):
 
     protocol_folder_name = "/kaggle/input/asvspoof2019-la/LA/ASVspoof2019_LA_cm_protocols"
-    subset_dir_prefix = "/kaggle/input/asvspoof2019-la/LA_"
+    subset_dir_prefix = "/kaggle/input/asvspoof2019-la/LA/ASVspoof2019_LA_"
     subsets = ("train", "dev", "eval")
 
     def __init__(self, path, fold_num=0, fold_subset="train", transform=None):
