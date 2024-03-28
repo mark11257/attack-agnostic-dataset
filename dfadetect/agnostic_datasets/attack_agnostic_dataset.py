@@ -11,7 +11,7 @@ class AttackAgnosticDataset(SimpleAudioFakeDataset):
     def __init__(
         self,
         asvspoof_path=None,
-        wavefake_path=None,
+        # wavefake_path=None,
         fold_num=0,
         fold_subset="val",
         transform=None,
