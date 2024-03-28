@@ -164,7 +164,7 @@ def evaluate_nn(
         logging_prefix = f"fold_{fold}"
         data_val = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
-            wavefake_path=datasets_paths[1],
+            # wavefake_path=datasets_paths[1],
             fold_num=fold,
             fold_subset="val",
             reduced_number=amount_to_use,
@@ -257,10 +257,10 @@ def evaluate_gmm(
     LOGGER.info(f"paths: {real_model_path}, {fake_model_path}, {datasets_paths}")
 
     for subtype in ["val", "test", "train"]:
-        for fold in [0, 1]:
+        for fold in [0]:
             real_dataset_test = AttackAgnosticDataset(
                 asvspoof_path=datasets_paths[0],
-                wavefake_path=datasets_paths[1],
+                # wavefake_path=datasets_paths[1],
                 fold_num=fold,
                 fold_subset=subtype,
                 oversample=False,
@@ -272,7 +272,7 @@ def evaluate_gmm(
 
             fake_dataset_test = AttackAgnosticDataset(
                 asvspoof_path=datasets_paths[0],
-                wavefake_path=datasets_paths[1],
+                # wavefake_path=datasets_paths[1],
                 fold_num=fold,
                 fold_subset=subtype,
                 oversample=False,
@@ -383,14 +383,14 @@ def parse_args():
 
     # If assigned as None, then it won't be taken into account
     ASVSPOOF_DATASET_PATH = "../datasets/ASVspoof2021/LA"
-    WAVEFAKE_DATASET_PATH = "../datasets/WaveFake"
+    # WAVEFAKE_DATASET_PATH = "../datasets/WaveFake"
 
     parser.add_argument(
         "--asv_path", type=str, default=ASVSPOOF_DATASET_PATH
     )
-    parser.add_argument(
-        "--wavefake_path", type=str, default=WAVEFAKE_DATASET_PATH
-    )
+    # parser.add_argument(
+    #     "--wavefake_path", type=str, default=WAVEFAKE_DATASET_PATH
+    # )
 
 
     default_model_config = "config.yaml"
