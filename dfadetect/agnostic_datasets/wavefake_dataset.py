@@ -32,9 +32,9 @@
 
 # class WaveFakeDataset(SimpleAudioFakeDataset):
 
-#     fake_data_path = "generated_audio"
-#     jsut_real_data_path = "real_audio/jsut_ver1.1/basic5000/wav"
-#     ljspeech_real_data_path = "real_audio/LJSpeech-1.1/wavs"
+#     fake_data_path = "/kaggle/input/wavefake-test/generated_audio"
+#     jsut_real_data_path = "/kaggle/input/jsut-dataset1/jsut_ver1.1/basic5000/wav"
+#     ljspeech_real_data_path = "/kaggle/input/the-lj-speech-dataset/LJSpeech-1.1/wavs"
 
 #     def __init__(self, path, fold_num=0, fold_subset="train", transform=None):
 #         super().__init__(fold_num, fold_subset, transform)
