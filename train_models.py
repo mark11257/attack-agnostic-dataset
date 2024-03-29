@@ -70,7 +70,7 @@ def train_nn(
         use_cnn_features=use_cnn_features,
     )
     timestamp = time.time()
-    folds_number = 1
+    folds_number = 3
 
     for fold in range(folds_number):
         data_train = AttackAgnosticDataset(
@@ -282,7 +282,7 @@ def parse_args():
     parser.add_argument(
         "--batch_size", "-b", help=f"Batch size (default: {default_batch_size}).", type=int, default=default_batch_size)
 
-    default_epochs = 5
+    default_epochs = 20
     parser.add_argument(
         "--epochs", "-e", help=f"Epochs (default: {default_epochs}).", type=int, default=default_epochs)
 
