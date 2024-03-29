@@ -356,7 +356,7 @@ def main(args):
     if not args.use_gmm:
         evaluate_nn(
             model_paths=config["checkpoint"].get("paths", []),
-            datasets_paths=[args.asv_path, args.wavefake_path],
+            datasets_paths=[args.asv_path],
             model_config=config["model"],
             data_config=config["data"],
             amount_to_use=args.amount,
@@ -366,7 +366,7 @@ def main(args):
         evaluate_gmm(
             real_model_path=args.ckpt,
             fake_model_path=args.ckpt,
-            datasets_paths=[args.asv_path, args.wavefake_path],
+            datasets_paths=[args.asv_path],
             feature_fn=lfcc if args.lfcc else mfcc,
             feature_kwargs=feature_kwargs(lfcc=args.lfcc),
             clusters=args.clusters,
