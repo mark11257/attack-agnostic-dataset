@@ -282,7 +282,7 @@ def parse_args():
     parser.add_argument(
         "--batch_size", "-b", help=f"Batch size (default: {default_batch_size}).", type=int, default=default_batch_size)
 
-    default_epochs = 1
+    default_epochs = 4
     parser.add_argument(
         "--epochs", "-e", help=f"Epochs (default: {default_epochs}).", type=int, default=default_epochs)
 
