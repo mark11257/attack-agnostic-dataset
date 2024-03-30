@@ -382,7 +382,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     # If assigned as None, then it won't be taken into account
-    ASVSPOOF_DATASET_PATH = "../datasets/ASVspoof2021/LA"
+    ASVSPOOF_DATASET_PATH = "/kaggle/input/asvspoof2019-la/LA"
     # WAVEFAKE_DATASET_PATH = "../datasets/WaveFake"
 
     parser.add_argument(
