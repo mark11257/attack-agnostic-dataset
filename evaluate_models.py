@@ -147,7 +147,7 @@ def evaluate_nn(
         cnn_features_setting = CNNFeaturesSetting()
 
     weights_path = ''
-    for fold in tqdm.tqdm(range(3)):
+    for fold in tqdm.tqdm(range(1)):
         # Load model architecture
         model = models.get_model(
             model_name=model_name, config=model_parameters, device=device,
