@@ -70,7 +70,7 @@ def train_nn(
         use_cnn_features=use_cnn_features,
     )
     timestamp = time.time()
-    folds_number = 3
+    folds_number = 1
 
     for fold in range(folds_number):
         data_train = AttackAgnosticDataset(
@@ -257,7 +257,7 @@ def main(args):
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    ASVSPOOF_DATASET_PATH = "../datasets/ASVspoof2021/LA"
+    ASVSPOOF_DATASET_PATH = "/kaggle/input/asvspoof2019-la/LA"
     # WAVEFAKE_DATASET_PATH = "../datasets/WaveFake"
 
     parser.add_argument(
