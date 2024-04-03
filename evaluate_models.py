@@ -147,7 +147,7 @@ def evaluate_nn(
         cnn_features_setting = CNNFeaturesSetting()
 
     weights_path = ''
-    for fold in tqdm.tqdm(range(1)):
+    for fold in tqdm.tqdm(range(3)):
         # Load model architecture
         model = models.get_model(
             model_name=model_name, config=model_parameters, device=device,
@@ -164,7 +164,7 @@ def evaluate_nn(
         logging_prefix = f"fold_{fold}"
         data_val = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
-            # wavefake_path=datasets_paths[1],
+            wavefake_path=datasets_paths[1],
             fold_num=fold,
             fold_subset="val",
             reduced_number=amount_to_use,
@@ -257,10 +257,10 @@ def evaluate_gmm(
     LOGGER.info(f"paths: {real_model_path}, {fake_model_path}, {datasets_paths}")
 
     for subtype in ["val", "test", "train"]:
-        for fold in [0]:
+        for fold in [0,1,2]:
             real_dataset_test = AttackAgnosticDataset(
                 asvspoof_path=datasets_paths[0],
-                # wavefake_path=datasets_paths[1],
+                wavefake_path=datasets_paths[1],
                 fold_num=fold,
                 fold_subset=subtype,
                 oversample=False,
@@ -272,7 +272,7 @@ def evaluate_gmm(
 
             fake_dataset_test = AttackAgnosticDataset(
                 asvspoof_path=datasets_paths[0],
-                # wavefake_path=datasets_paths[1],
+                wavefake_path=datasets_paths[1],
                 fold_num=fold,
                 fold_subset=subtype,
                 oversample=False,
@@ -356,7 +356,7 @@ def main(args):
     if not args.use_gmm:
         evaluate_nn(
             model_paths=config["checkpoint"].get("paths", []),
-            datasets_paths=[args.asv_path],
+            datasets_paths=[args.asv_path, args.wavefake_path],
             model_config=config["model"],
             data_config=config["data"],
             amount_to_use=args.amount,
@@ -366,7 +366,7 @@ def main(args):
         evaluate_gmm(
             real_model_path=args.ckpt,
             fake_model_path=args.ckpt,
-            datasets_paths=[args.asv_path],
+            datasets_paths=[args.asv_path, args.wavefake_path],
             feature_fn=lfcc if args.lfcc else mfcc,
             feature_kwargs=feature_kwargs(lfcc=args.lfcc),
             clusters=args.clusters,
@@ -383,14 +383,14 @@ def parse_args():
 
     # If assigned as None, then it won't be taken into account
     ASVSPOOF_DATASET_PATH = "/kaggle/input/asvspoof2019-la/LA"
-    # WAVEFAKE_DATASET_PATH = "../datasets/WaveFake"
+    WAVEFAKE_DATASET_PATH = "/kaggle/input/wavefake-test"
 
     parser.add_argument(
         "--asv_path", type=str, default=ASVSPOOF_DATASET_PATH
     )
-    # parser.add_argument(
-    #     "--wavefake_path", type=str, default=WAVEFAKE_DATASET_PATH
-    # )
+    parser.add_argument(
+        "--wavefake_path", type=str, default=WAVEFAKE_DATASET_PATH
+    )
 
 
     default_model_config = "config.yaml"
