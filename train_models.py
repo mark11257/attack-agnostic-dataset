@@ -137,7 +137,7 @@ def train_gmm(
 
     LOGGER.info("Loading data...")
 
-    for fold in range(1):
+    for fold in range(3):
         real_dataset_train = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
             wavefake_path=datasets_paths[1],
@@ -282,7 +282,7 @@ def parse_args():
     parser.add_argument(
         "--batch_size", "-b", help=f"Batch size (default: {default_batch_size}).", type=int, default=default_batch_size)
 
-    default_epochs = 1
+    default_epochs = 5
     parser.add_argument(
         "--epochs", "-e", help=f"Epochs (default: {default_epochs}).", type=int, default=default_epochs)
 
