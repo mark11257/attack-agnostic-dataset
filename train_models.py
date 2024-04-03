@@ -70,12 +70,12 @@ def train_nn(
         use_cnn_features=use_cnn_features,
     )
     timestamp = time.time()
-    folds_number = 1
+    folds_number = 3
 
     for fold in range(folds_number):
         data_train = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
-            # wavefake_path=datasets_paths[1],
+            wavefake_path=datasets_paths[1],
             fold_num=fold,
             fold_subset="train",
             reduced_number=amount_to_use,
@@ -84,7 +84,7 @@ def train_nn(
 
         data_test = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
-            # wavefake_path=datasets_paths[1],
+            wavefake_path=datasets_paths[1],
             fold_num=fold,
             fold_subset="test",
             reduced_number=amount_to_use,
@@ -140,7 +140,7 @@ def train_gmm(
     for fold in range(1):
         real_dataset_train = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
-            # wavefake_path=datasets_paths[1],
+            wavefake_path=datasets_paths[1],
             fold_num=fold,
             fold_subset="train",
             oversample=False,
@@ -152,7 +152,7 @@ def train_gmm(
 
         fake_dataset_train = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
-            # wavefake_path=datasets_paths[1],
+            wavefake_path=datasets_paths[1],
             fold_num=fold,
             fold_subset="train",
             oversample=False,
@@ -230,7 +230,7 @@ def main(args):
             cnn_features_setting = CNNFeaturesSetting()
 
         train_nn(
-            datasets_paths=[args.asv_path],
+            datasets_paths=[args.asv_path, args.wavefake_path],
             device=device,
             amount_to_use=args.amount,
             batch_size=args.batch_size,
@@ -242,7 +242,7 @@ def main(args):
     else:
         feature_fn = lfcc if args.lfcc else mfcc
         train_gmm(
-            datasets_paths=[args.asv_path],
+            datasets_paths=[args.asv_path, args.wavefake_path],
             feature_fn=feature_fn,
             feature_kwargs=feature_kwargs(args.lfcc),
             clusters=args.clusters,
@@ -258,14 +258,14 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     ASVSPOOF_DATASET_PATH = "/kaggle/input/asvspoof2019-la/LA"
-    # WAVEFAKE_DATASET_PATH = "../datasets/WaveFake"
+    WAVEFAKE_DATASET_PATH = "/kaggle/input/wavefake-test"
 
     parser.add_argument(
         "--asv_path", type=str, default=ASVSPOOF_DATASET_PATH, help="Path to ASVspoof2021 dataset directory",
     )
-    # parser.add_argument(
-    #     "--wavefake_path", type=str, default=WAVEFAKE_DATASET_PATH, help="Path to WaveFake dataset directory",
-    # )
+    parser.add_argument(
+        "--wavefake_path", type=str, default=WAVEFAKE_DATASET_PATH, help="Path to WaveFake dataset directory",
+    )
 
 
     default_model_config = "config.yaml"
@@ -282,7 +282,7 @@ def parse_args():
     parser.add_argument(
         "--batch_size", "-b", help=f"Batch size (default: {default_batch_size}).", type=int, default=default_batch_size)
 
-    default_epochs = 4
+    default_epochs = 1
     parser.add_argument(
         "--epochs", "-e", help=f"Epochs (default: {default_epochs}).", type=int, default=default_epochs)
 
