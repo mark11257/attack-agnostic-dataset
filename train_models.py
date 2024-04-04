@@ -29,7 +29,7 @@ def init_logger(log_file):
     # # create console handler
     ch = logging.StreamHandler()
 
-    # # create formatter and add it to the handlers
+    # create formatter and add it to the handlers
     formatter = logging.Formatter(
         '%(asctime)s - %(levelname)s - %(message)s')
     fh.setFormatter(formatter)
