@@ -70,7 +70,7 @@ def train_nn(
         use_cnn_features=use_cnn_features,
     )
     timestamp = time.time()
-    folds_number = 3
+    folds_number = 2
 
     for fold in range(folds_number):
         data_train = AttackAgnosticDataset(
@@ -137,7 +137,7 @@ def train_gmm(
 
     LOGGER.info("Loading data...")
 
-    for fold in range(3):
+    for fold in range(2):
         real_dataset_train = AttackAgnosticDataset(
             asvspoof_path=datasets_paths[0],
             wavefake_path=datasets_paths[1],
