@@ -147,14 +147,14 @@ def evaluate_nn(
         cnn_features_setting = CNNFeaturesSetting()
 
     weights_path = ''
-    for fold in tqdm.tqdm(range(3)):
+    for fold in tqdm.tqdm(range(2)):
         # Load model architecture
         model = models.get_model(
             model_name=model_name, config=model_parameters, device=device,
         )
         # If provided weights, apply corresponding ones (from an appropriate fold)
         if len(model_paths) > 1:
-            assert len(model_paths) == 3, "Pass either 0 or 3 weights path"
+            assert len(model_paths) == 2, "Pass either 0 or 3 weights path"
             weights_path = model_paths[fold]
             model.load_state_dict(
                 torch.load(weights_path)
@@ -170,7 +170,7 @@ def evaluate_nn(
             reduced_number=amount_to_use,
         )
         LOGGER.info(f"Testing '{model_name}' model, weights path: '{weights_path}', on {len(data_val)} audio files.")
-        print(f"Test Fold [{fold+1}/{3}]: ")
+        print(f"Test Fold [{fold+1}/{2}]: ")
         test_loader = DataLoader(
             data_val,
             batch_size=batch_size,
@@ -257,7 +257,7 @@ def evaluate_gmm(
     LOGGER.info(f"paths: {real_model_path}, {fake_model_path}, {datasets_paths}")
 
     for subtype in ["val", "test", "train"]:
-        for fold in [0,1,2]:
+        for fold in [0,1]:
             real_dataset_test = AttackAgnosticDataset(
                 asvspoof_path=datasets_paths[0],
                 wavefake_path=datasets_paths[1],
