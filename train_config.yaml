@@ -1,6 +1,12 @@
 data:
-  real_dir_path: []
-  fake_dir_path: []
+  real_dir_path: [
+  "trained_models/real_0/ckpt.pth",
+  "trained_models/real_1/ckpt.pth",
+  ]
+  fake_dir_path: [
+  "trained_models/fake_0/ckpt.pth",
+  "trained_models/fake_1/ckpt.pth",
+  ]
 
 
 logging:
