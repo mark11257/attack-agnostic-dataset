@@ -298,7 +298,7 @@ class NNDataSetting:
 
 class Trainer():
     def __init__(self,
-                 epochs: int = 20,
+                 epochs: int = 1,
                  batch_size: int = 32,
                  device: str = "cpu",
                  optimizer_fn: Callable = torch.optim.Adam,
