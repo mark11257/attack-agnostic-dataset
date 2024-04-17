@@ -47,7 +47,7 @@ def save_model(
     full_model_dir = Path(f"{model_dir}/{name}")
     full_model_dir.mkdir(parents=True, exist_ok=True)
     torch.save(model.state_dict(), f"{full_model_dir}/ckpt.pth")
-    torch.save(model, f"{full_model_dir}/model.pth")
+    torch.save(model, f"{full_model_dir}/model.pth", pickle_protocol=4)
 
 
 def train_nn(
