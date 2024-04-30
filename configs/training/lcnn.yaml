@@ -7,7 +7,7 @@ data:
 checkpoint:
   paths: [
   "trained_models/aad__lcnn_fold_0__1714324044.1347437/ckpt.pth",
-  "trained_models/aad__lcnn_fold_1__1712235231.8917823/ckpt.pth",
+  "trained_models/aad__lcnn_fold_1__1714324044.1347437/ckpt.pth",
   ]
 
 model:
