@@ -215,7 +215,8 @@ def main(args):
     # fix all seeds
     set_seed(seed)
 
-    if not args.cpu and torch.cuda.is_available():
+     # Device selection based on user input
+    if args.cpu or not torch.cuda.is_available():
         device = "cpu"
     else:
         device = "cuda"
