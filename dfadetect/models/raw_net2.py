@@ -147,7 +147,9 @@ class RawNet(nn.Module):
     def __init__(self, d_args, **kwargs):
         super(RawNet, self).__init__()
 
-        self.device = kwargs.get('device', 'cuda')
+        # Set the device dynamically
+        self.device = kwargs.get('device', 'cuda' if torch.cuda.is_available() else 'cpu')
+
 
         self.Sinc_conv = SincConv(device=self.device,
                                   out_channels=d_args['filts'][0],
