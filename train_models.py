@@ -216,9 +216,9 @@ def main(args):
     set_seed(seed)
 
     if not args.cpu and torch.cuda.is_available():
-        device = "cuda"
-    else:
         device = "cpu"
+    else:
+        device = "cuda"
 
     model_dir = Path(args.ckpt)
     model_dir.mkdir(parents=True, exist_ok=True)
