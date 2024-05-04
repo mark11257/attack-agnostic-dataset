@@ -215,11 +215,8 @@ def main(args):
     # fix all seeds
     set_seed(seed)
 
-     # Device selection based on user input
-    if args.cpu or not torch.cuda.is_available():
-        device = "cpu"
-    else:
-        device = "cuda"
+      # Device selection based on user input
+    device = "cpu"  # Force using CPU
 
     model_dir = Path(args.ckpt)
     model_dir.mkdir(parents=True, exist_ok=True)
