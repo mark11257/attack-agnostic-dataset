@@ -6,7 +6,7 @@ data:
 
 checkpoint:
   paths: [
-  "trained_models/aad__lcnn_fold_0__1714324044.1347437/ckpt.pth",
+  "/kaggle/input/rawnetckpt/ckpt.pth",
   ]
 
 model:
