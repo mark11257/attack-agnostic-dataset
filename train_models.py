@@ -46,7 +46,7 @@ def save_model(
 ) -> None:
     full_model_dir = Path(f"{model_dir}/{name}")
     full_model_dir.mkdir(parents=True, exist_ok=True)
-    torch.save(model.state_dict(), f"{full_model_dir}/ckpt.pth")
+    #torch.save(model.state_dict(), f"{full_model_dir}/ckpt.pth")
     torch.save(model, f"{full_model_dir}/model.pth", pickle_protocol=4)
 
 
@@ -215,8 +215,10 @@ def main(args):
     # fix all seeds
     set_seed(seed)
 
-      # Device selection based on user input
-    device = "cpu"  # Force using CPU
+    if not args.cpu and torch.cuda.is_available():
+        device = "cuda"
+    else:
+        device = "cpu"
 
     model_dir = Path(args.ckpt)
     model_dir.mkdir(parents=True, exist_ok=True)
