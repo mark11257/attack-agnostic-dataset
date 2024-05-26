@@ -341,9 +341,9 @@ def evaluate_gmm(
 
 def main(args):
 
-      if not args.cpu and torch.cuda.is_available():
+    if not args.cpu and torch.cuda.is_available():
         device = "cuda"
-      else:
+    else:
         device = "cpu"
 
     with open(args.config, "r") as f:
