@@ -5,7 +5,9 @@ data:
     use_spectrogram: False
 
 checkpoint:
-  paths: []
+  paths: [
+  "trained_models/aad__lcnn_fold_0__1714324044.1347437/ckpt.pth",
+  ]
 
 model:
   name: "rawnet"
