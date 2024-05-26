@@ -341,8 +341,10 @@ def evaluate_gmm(
 
 def main(args):
 
-      # Device selection based on user input
-    device = "cpu"  # Force using CPU
+      if not args.cpu and torch.cuda.is_available():
+        device = "cuda"
+    else:
+        device = "cpu"
 
     with open(args.config, "r") as f:
         config = yaml.safe_load(f)
