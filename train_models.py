@@ -46,8 +46,16 @@ def save_model(
 ) -> None:
     full_model_dir = Path(f"{model_dir}/{name}")
     full_model_dir.mkdir(parents=True, exist_ok=True)
-    #torch.save(model.state_dict(), f"{full_model_dir}/ckpt.pth")
     torch.save(model, f"{full_model_dir}/model.pth", pickle_protocol=4)
+
+def save_checkpoint(
+    model: torch.nn.Module,
+    model_dir: Union[Path, str],
+    name: str,
+) -> None:
+    full_model_dir = Path(f"{model_dir}/{name}")
+    full_model_dir.mkdir(parents=True, exist_ok=True)
+    torch.save(model.state_dict(), f"{full_model_dir}/ckpt.pth")
 
 
 def train_nn(
@@ -113,13 +121,22 @@ def train_nn(
         )
 
         if model_dir is not None:
-            save_name = f"aad__{model_name}_fold_{fold}__{timestamp}"
-            save_model(
-                model=current_model,
+            save_checkpoint(
+                model=model,
                 model_dir=model_dir,
-                name=save_name,
+                name=f"aad__{model_name}_fold_{fold}__{timestamp}",
             )
+
         LOGGER.info(f"Training model on fold [{fold+1}/{folds_number}] done!")
+
+    # Save the final model after all folds are done
+    if model_dir is not None:
+        final_save_name = f"aad__{model_name}_final__{timestamp}"
+        save_model(
+            model=model,
+            model_dir=model_dir,
+            name=final_save_name,
+        )
 
 
 def train_gmm(
