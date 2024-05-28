@@ -122,7 +122,7 @@ def train_nn(
 
         if model_dir is not None:
             save_checkpoint(
-                model=model,
+                model=current_model,
                 model_dir=model_dir,
                 name=f"aad__{model_name}_fold_{fold}__{timestamp}",
             )
