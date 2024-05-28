@@ -133,7 +133,7 @@ def train_nn(
     if model_dir is not None:
         final_save_name = f"aad__{model_name}_final__{timestamp}"
         save_model(
-            model=model,
+            model=current_model,
             model_dir=model_dir,
             name=final_save_name,
         )
