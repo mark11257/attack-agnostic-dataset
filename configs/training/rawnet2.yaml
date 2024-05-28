@@ -6,6 +6,7 @@ data:
 
 checkpoint:
   paths: [
+  "trained_models/aad__rawnet_fold_0__1716923767.6772423/ckpt.pth",
   "trained_models/aad__rawnet_fold_1__1716912939.4962392/ckpt.pth",
   ]
 
@@ -14,4 +15,4 @@ model:
   parameters: {}
   optimizer:
     lr: 0.0001
-    weight_decay: 0.0001
+    weight_decay: 0.001
